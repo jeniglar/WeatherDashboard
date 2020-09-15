@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+  <title>Weather Dashboard</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <nav class=row>
+      <h2>Weather Dashboard</h2>
+    </nav>
+    <div class="row">
+      <aside class="col-md-3">
+        <h5>Search for a City:</h5>
+        <input id="city"></input>
+        <br>
+        <button type="button" class="btn btn-secondary">Search</button>
+        <ul id="savedCities"></ul>
+      </aside>
+      <main class="col-md-9">
+        <section class="row jumbotron"></section>
+        <h3 class="row">Five Day Forecast:</h3>
+        <section class="row card-group">
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+          <div class="card"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script type="text/javascript" src="weather.js"></script>
+</body>
+
+</html>
