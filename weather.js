@@ -44,7 +44,6 @@ $(document).ready(function () {
                 method: "GET"
             }).then(function (fiveDay) {
                 $("#city").text(JSON.stringify(fiveDay));
-
                 var day1WeatherIcon = fiveDay.daily[1].weather[0].icon;
                 var day2WeatherIcon = fiveDay.daily[2].weather[0].icon;
                 var day3WeatherIcon = fiveDay.daily[3].weather[0].icon;
@@ -78,10 +77,23 @@ $(document).ready(function () {
                 $("#tempDay5").text("Temp: " + tempFar5.toFixed(2) + " °F");
                 $("#humidityDay5").text("Humidity: " + (JSON.stringify(fiveDay.daily[5].humidity)) +"%");
   
+                function uvColor() {
+                    var uv = fiveDay.current.uvi;
+                    var low = 2
+                    var high = 7
+                    console.log(uv);
+                    if (uv < low) {
+                        $("#uvIndex").addClass("uvLow");
+                    } else if (uv > high) {
+                        $("#uvIndex").addClass("uvHigh");
+                    } else {
+                        $("#uvIndex").addClass("uvMid");
+                 };
+                };
+
+                uvColor();
+
             });
         });
     });
-
-
-
 });

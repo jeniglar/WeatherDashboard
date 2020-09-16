@@ -18,3 +18,18 @@ h1 {
     background-color: rgb(57, 162, 227);
     margin: 10px;
 }
+
+.uvLow {
+    display: inline;
+    background-color: green;
+  }
+  
+.uvMid {
+    display: inline;
+    background-color: yellow;
+  }
+  
+.uvHigh {
+    display: inline;
+    background-color: red;
+  }
