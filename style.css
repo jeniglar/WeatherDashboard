@@ -9,6 +9,10 @@ h1 {
   margin: auto;
 }
 
+.jumbotron {
+    background-color: lightsteelblue;
+}
+
 .card {
     color: white;
     background-color: rgb(57, 162, 227);
