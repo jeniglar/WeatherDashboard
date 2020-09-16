@@ -2,6 +2,28 @@ $(document).ready(function () {
 
     $("#search").on("click", function (event) {
         event.preventDefault();
+        var city = JSON.parse(localStorage.getItem("city")) || [];
+        var location = $(this).siblings("#city").val();
+        if (location === "") {
+            return
+        };
+        city.push(location);
+        saveCity(city);
+        updatePage();
+
+        function updatePage() {
+            $("#savedCities").empty();
+            var location = JSON.parse(localStorage.getItem("cities"));
+            for (var i = 0; i < location.length; i++) {
+                var newCity = $("<button>").text(location[i]);
+                $("#savedCities").append(newCity);
+                console.log(location);
+            }
+        };
+        
+        function saveCity(newCity) {
+            localStorage.setItem("cities", JSON.stringify(newCity));
+        };
 
         var currentDate = moment().format('l');
         var date1 = moment().add(1, 'days').format('l');
@@ -36,7 +58,7 @@ $(document).ready(function () {
             $("#humidity").text("Humidity: " + weatherData.main.humidity + "%");
             $("#windSpeed").text("Wind Speed: " + weatherData.wind.speed + " MPH");
             $("#currentWeatherIcon").attr("src", "https://openweathermap.org/img/wn/" + currentWeatherIcon + "@2x.png");
-    
+
             var uvQueryURL = "https://api.openweathermap.org/data/2.5/onecall?&appid=4983d208fd371cf8ba56cd03550e6ec5&q=&lat=" + lat + "&lon=" + lon;
 
             $.ajax({
@@ -67,16 +89,16 @@ $(document).ready(function () {
 
                 var tempFar3 = (JSON.stringify(fiveDay.daily[3].temp.day) - 273.15) * 1.80 + 32;
                 $("#tempDay3").text("Temp: " + tempFar3.toFixed(2) + " °F");
-                $("#humidityDay3").text("Humidity: " + (JSON.stringify(fiveDay.daily[3].humidity)) +"%");
+                $("#humidityDay3").text("Humidity: " + (JSON.stringify(fiveDay.daily[3].humidity)) + "%");
 
                 var tempFar4 = (JSON.stringify(fiveDay.daily[4].temp.day) - 273.15) * 1.80 + 32;
                 $("#tempDay4").text("Temp: " + tempFar4.toFixed(2) + " °F");
-                $("#humidityDay4").text("Humidity: " + (JSON.stringify(fiveDay.daily[4].humidity)) +"%");
+                $("#humidityDay4").text("Humidity: " + (JSON.stringify(fiveDay.daily[4].humidity)) + "%");
 
                 var tempFar5 = (JSON.stringify(fiveDay.daily[5].temp.day) - 273.15) * 1.80 + 32;
                 $("#tempDay5").text("Temp: " + tempFar5.toFixed(2) + " °F");
-                $("#humidityDay5").text("Humidity: " + (JSON.stringify(fiveDay.daily[5].humidity)) +"%");
-  
+                $("#humidityDay5").text("Humidity: " + (JSON.stringify(fiveDay.daily[5].humidity)) + "%");
+
                 function uvColor() {
                     var uv = fiveDay.current.uvi;
                     var low = 2
@@ -88,7 +110,7 @@ $(document).ready(function () {
                         $("#uvIndex").addClass("uvHigh");
                     } else {
                         $("#uvIndex").addClass("uvMid");
-                 };
+                    };
                 };
 
                 uvColor();
