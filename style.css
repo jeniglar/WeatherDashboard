@@ -1,8 +1,12 @@
 
 .header {
-    text-align: center;
     color: white;
     background-color: navy;
+    height: 80px;
+}
+
+h1 {
+  margin: auto;
 }
 
 .card {
