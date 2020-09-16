@@ -4,3 +4,9 @@
     color: white;
     background-color: navy;
 }
+
+.card {
+    color: white;
+    background-color: rgb(57, 162, 227);
+    margin: 10px;
+}
