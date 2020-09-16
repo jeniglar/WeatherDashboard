@@ -2,7 +2,7 @@
 .header {
     color: white;
     background-color: navy;
-    height: 80px;
+    min-height: 80px;
 }
 
 h1 {
