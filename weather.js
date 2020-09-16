@@ -1,30 +1,25 @@
 $(document).ready(function () {
 
-    $("#search").on("click", function (event) {
-        event.preventDefault();
-        var city = JSON.parse(localStorage.getItem("city")) || [];
-        var location = $(this).siblings("#city").val();
-        if (location === "") {
-            return
-        };
-        city.push(location);
-        saveCity(city);
-        updatePage();
+    var history = JSON.parse(localStorage.getItem("cities")) || [];
+    updatePage();
 
-        function updatePage() {
-            $("#savedCities").empty();
-            var location = JSON.parse(localStorage.getItem("cities"));
-            for (var i = 0; i < location.length; i++) {
-                var newCity = $("<button>").text(location[i]);
-                $("#savedCities").append(newCity);
-                console.log(location);
-            }
-        };
-        
-        function saveCity(newCity) {
-            localStorage.setItem("cities", JSON.stringify(newCity));
-        };
+    function updatePage() {
+        $("#savedCities").empty();
+        for (var i = 0; i < history.length; i++) {
+            var newCity = $("<button>").text(history[i]);
+            newCity.addClass("cityButton");
+            $("#savedCities").append(newCity);
+            console.log(history);
+        }
+    };
+    
+    function saveCity(newCity) {
+        localStorage.setItem("cities", JSON.stringify(newCity));
+    };
 
+    function searchCity(city) {
+
+        var currentWeatherQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=168ede3fa90ff704eb0e8116151af527";
         var currentDate = moment().format('l');
         var date1 = moment().add(1, 'days').format('l');
         var date2 = moment().add(2, 'days').format('l');
@@ -38,10 +33,7 @@ $(document).ready(function () {
         $("#date3").text(date3);
         $("#date4").text(date4);
         $("#date5").text(date5);
-
-        var city = $("#city").val();
-        var currentWeatherQueryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=168ede3fa90ff704eb0e8116151af527";
-
+        
         $.ajax({
             url: currentWeatherQueryURL,
             method: "GET"
@@ -104,6 +96,7 @@ $(document).ready(function () {
                     var low = 2
                     var high = 7
                     console.log(uv);
+                    $("#uvIndex").attr("class","");
                     if (uv < low) {
                         $("#uvIndex").addClass("uvLow");
                     } else if (uv > high) {
@@ -114,8 +107,26 @@ $(document).ready(function () {
                 };
 
                 uvColor();
-
             });
         });
+    }
+
+    $(document).on("click", ".cityButton", function(event){
+        event.preventDefault();
+        searchCity($(this).text());
+    })
+
+    $("#search").on("click", function (event) {
+        event.preventDefault();
+        var location = $(this).siblings("#city").val();
+        if (location === "") {
+            return
+        };
+        history.push(location);
+        saveCity(history);
+        updatePage();
+
+        var city = $("#city").val();
+        searchCity(city);
     });
 });
