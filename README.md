@@ -5,6 +5,11 @@
 I have created a weather dashboard application that allows the user to search weather information by city. When the user enters a city and clicks the search button, they are presented with a snapshot of current weather information along with an icon to indicate weather conditions. Additionally, they receive a 5 day forecast that includes the date, temperature, humidity, and a weather icon.
 
 
+<p align="center">
+<img width ="70%" src="weather.png" alt="Weather Dashboard">
+</>
+
+
 ## Table of Contents
 - [Installation](##Installation)
 - [Usage](##Usage)
