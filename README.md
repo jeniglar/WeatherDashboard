@@ -11,12 +11,12 @@ I have created a weather dashboard application that allows the user to search we
 
 
 ## Table of Contents
-- [Installation](##Installation)
-- [Usage](##Usage)
-- [License](##License)
-- [Contributions](##Contributions)
-- [Tests](##Tests)
-- [Questions](##Questions) 
+- [Installation](#installation)
+- [Usage](#usage)
+- [License](#license)
+- [Contributions](#contributions)
+- [Tests](#tests)
+- [Questions](#questions) 
   
 
 ## Installation
